@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Verification</title>
+    <style>
+        /* CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        #pendingAccounts {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        
+        #pendingAccounts li {
+            list-style-type: none;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
+        #pendingAccounts li:last-child {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Admin Verification</h1>
+    <ul id="pendingAccounts"></ul>
+    <script>
+        // JavaScript logic
+        // Simulating fetching pending accounts from the server
+        const pendingAccounts = [
+            { id: 1, type: 'Restaurant', name: 'Restaurant A' },
+            { id: 2, type: 'Customer', name: 'Customer B' },
+            { id: 3, type: 'Restaurant', name: 'Restaurant C' }
+        ];
+        
+        const pendingAccountsList = document.getElementById('pendingAccounts');
+        
+        // Display pending accounts
+        pendingAccounts.forEach(account => {
+            const listItem = document.createElement('li');
+            listItem.textContent = `${account.type}: ${account.name}`;
+            pendingAccountsList.appendChild(listItem);
+        });
+    </script>
+</body>
+</html>

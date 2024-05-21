@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Dashboard</title>
+    <style>
+        /* CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+        }
+        
+        #restaurantList {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin-bottom: 20px;
+        }
+        
+        #restaurantList li {
+            list-style-type: none;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        #restaurantList li:hover {
+            background-color: #f0f0f0;
+        }
+        
+        #restaurantDishes {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            display: none;
+        }
+        
+        #restaurantDishes li {
+            list-style-type: none;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
+        #restaurantDishes li:last-child {
+            margin-bottom: 0;
+        }
+        
+        #orderPlacementForm {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        
+        #orderPlacementForm label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        #orderPlacementForm input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        #orderPlacementForm button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        #orderPlacementForm button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Customer Dashboard</h1>
+    <ul id="restaurantList"></ul>
+    <div id="restaurantDishes"></div>
+    <form id="orderPlacementForm">
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" min="1" required><br><br>
+        <button type="submit">Place Order</button>
+    </form>
+    <script>
+        // JavaScript logic
+        // Simulating fetching restaurants and dishes from the server
+        const restaurants = [
+            { id: 1, name: 'Restaurant A', dishes: ['Dish 1', 'Dish 2', 'Dish 3'] },
+            { id: 2, name: 'Restaurant B', dishes: ['Dish 4', 'Dish 5', 'Dish 6'] },
+            { id: 3, name: 'Restaurant C', dishes: ['Dish 7', 'Dish 8', 'Dish 9'] }
+        ];
+        
+        const restaurantList = document.getElementById('restaurantList');
+        
+        // Display restaurant list
+        restaurants.forEach(restaurant => {
+            const listItem = document.createElement('li');
+            listItem.textContent = restaurant.name;
+            listItem.addEventListener('click', () => showRestaurantDishes(restaurant));
+            restaurantList.appendChild(listItem);
+        });
+        
+        function showRestaurantDishes(restaurant) {
+            const dishes = restaurant.dishes;
+            const restaurantDishesDiv = document.getElementById('restaurantDishes');
+            restaurantDishesDiv.innerHTML = '<h2>Available Dishes</h2>';
+            const dishesList = document.createElement('ul');
+            dishes.forEach(dish => {
+                const listItem = document.createElement('li');
+                listItem.textContent = dish;
+                dishesList.appendChild(listItem);
+            });
+            restaurantDishesDiv.appendChild(dishesList);
+            restaurantDishesDiv.style.display = 'block';
+        }
+        
+        // Order placement form submission
+        document.getElementById('orderPlacementForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+            const quantity = document.getElementById('quantity').value;
+            if (quantity > 0) {
+                // Here you would typically send the order to the server for processing
+                console.log('Order placed:', quantity);
+                alert('Order placed successfully!');
+            } else {
+                alert('Please enter a valid quantity.');
+            }
+        });
+    </script>
+</body>
+</html>
